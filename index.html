@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Generate QR Code</title>
+        <style>
+            .container {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            button {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            #qrcode-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Generate QR Code</h1>
+            <div class="form-group">
+                <label for="merchant-name">Merchant Name:</label>
+                <input
+                    type="text"
+                    id="merchant-name"
+                    placeholder="Enter Merchant Name"
+                />
+            </div>
+            <div class="form-group">
+                <label for="merchant-city">Merchant City:</label>
+                <input
+                    type="text"
+                    id="merchant-city"
+                    placeholder="Enter Merchant City"
+                />
+            </div>
+            <div class="form-group">
+                <label for="postal-code">Postal Code:</label>
+                <input
+                    type="text"
+                    id="postal-code"
+                    placeholder="Enter Postal Code"
+                />
+            </div>
+            <button id="generate-qrcode-btn">Generate QR Code</button>
+            <div id="qrcode-container"></div>
+        </div>
+
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function () {
+                const generateQRCodeBtn = document.getElementById(
+                    "generate-qrcode-btn"
+                );
+                const qrCodeContainer =
+                    document.getElementById("qrcode-container");
+
+                generateQRCodeBtn.addEventListener("click", function () {
+                    const merchantName =
+                        document.getElementById("merchant-name").value;
+                    const merchantCity =
+                        document.getElementById("merchant-city").value;
+                    const postalCode =
+                        document.getElementById("postal-code").value;
+
+                    const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${merchantName},${merchantCity},${postalCode}&chs=300x300`;
+
+                    qrCodeContainer.innerHTML = `<img src="${qrCodeUrl}" alt="QR Code">`;
+                });
+            });
+            
+        </script>
+        <script src="app.js"></script>
+    </body>
+</html>
